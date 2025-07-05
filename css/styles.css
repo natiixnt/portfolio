@@ -178,6 +178,31 @@ abbr[title] {
           text-decoration-skip-ink: none;
 }
 
+.custom-ai-icon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.65);
+  opacity: 0.85;
+  margin: 5px;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  vertical-align: middle;
+}
+
+.custom-ai-icon:hover {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* Tylko dla ChatGPT logo – bo jest nietypowe */
+.chatgpt-fix {
+  border-radius: 50%;
+  background: white;
+  padding: 2px;
+}
+
+
 address {
   margin-bottom: 1rem;
   font-style: normal;
