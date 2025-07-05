@@ -14,6 +14,30 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+  .custom-ai-icon {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.65);
+    opacity: 0.85;
+    margin: 5px;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    vertical-align: middle;
+  }
+
+  .custom-ai-icon:hover {
+    filter: grayscale(0) brightness(1);
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .chatgpt-fix {
+    border-radius: 50%;
+    background: white;
+    padding: 2px;
+  }
+</style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -175,13 +199,12 @@ Tested for creative freelancers and indie devs.
                         <li class="list-inline-item"><i class="fab fa-wordpress"></i></li>
                         <li class="list-inline-item"><i class="fab fa-npm"></i></li>
                     <ul class="list-inline dev-icons">
-  <!-- ChatGPT -->
+   <!-- ChatGPT -->
   <li class="list-inline-item" title="ChatGPT">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/2048px-ChatGPT-Logo.svg.png"
          alt="ChatGPT"
-         class="custom-ai-icon">
+         class="custom-ai-icon chatgpt-fix">
   </li>
-
   <!-- Claude -->
   <li class="list-inline-item" title="Claude (Anthropic)">
     <img src="https://img.icons8.com/ios-filled/50/robot-2.png"
