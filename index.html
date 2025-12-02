@@ -24,8 +24,7 @@
             <a href="#contact">Contact</a>
         </nav>
         <div class="nav-actions">
-            <a class="ghost" href="assets/Natalia_Szczepanik_CV.pdf" download>Download CV</a>
-            <a class="primary" href="#projects">View Projects</a>
+            <a class="btn btn-outline" href="assets/Natalia_Szczepanik_CV.pdf" download>CV</a>
         </div>
     </header>
 
@@ -37,17 +36,16 @@
                     <h1>I build LLM-powered products, RAG systems and reliable backend services.</h1>
                     <p class="lede">I focus on Python, FastAPI, vector and relational databases, and cloud platforms (Azure/AWS) to turn business problems into production-ready systems. From prototypes to long-term maintenance, I care about data quality, observability and developer experience.</p>
                     <div class="cta-row">
-                        <a class="primary" href="#projects">View Projects</a>
-                        <a class="ghost" href="assets/Natalia_Szczepanik_CV.pdf" download>Download CV</a>
-                        <a class="text-link" href="#contact">Contact</a>
+                        <a class="btn btn-primary" href="#projects">View Projects</a>
+                        <a class="btn btn-secondary" href="assets/Natalia_Szczepanik_CV.pdf" download>Download CV</a>
                     </div>
-                    <div class="pill-row">
-                        <span>Python</span>
-                        <span>FastAPI</span>
-                        <span>LangChain / LangGraph</span>
-                        <span>RAG</span>
-                        <span>PostgreSQL</span>
-                        <span>Azure &amp; AWS</span>
+                    <div class="hero-tech-pills">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">LangChain / LangGraph</span>
+                        <span class="tech-pill">RAG</span>
+                        <span class="tech-pill">PostgreSQL</span>
+                        <span class="tech-pill">Azure &amp; AWS</span>
                     </div>
                 </div>
                 <div class="hero-card">
@@ -59,10 +57,19 @@
                         <li>Data pipelines from SQL + file stores to vectors</li>
                         <li>CI/CD and automated regression tests</li>
                     </ul>
-                    <div class="metrics">
-                        <div><strong>10+ yrs</strong><span>Coding since primary school</span></div>
-                        <div><strong>RAG</strong><span>LangChain, Chroma, Pinecone, Weaviate</span></div>
-                        <div><strong>Cloud</strong><span>Azure Functions, App Service, AWS Lambda/ECS</span></div>
+                    <div class="metrics hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">9+ years</div>
+                            <div class="hero-stat-label">coding experience</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">RAG</div>
+                            <div class="hero-stat-label">LangChain, Chroma, Pinecone, Weaviate</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">Cloud</div>
+                            <div class="hero-stat-label">Azure Functions, App Service, AWS Lambda/ECS</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,8 +147,7 @@
             <article class="project-card" id="project-knowledge-assistant">
                 <div class="project-header">
                     <div>
-                        <p class="eyebrow">Project 1</p>
-                        <h3>LLM Knowledge Assistant for Internal Systems</h3>
+                        <h3 class="project-title">LLM Knowledge Assistant for Internal Systems</h3>
                         <p class="sub">Python based assistant that answers questions about internal documentation and database records.</p>
                     </div>
                     <div class="stack">Python  |  FastAPI  |  PostgreSQL  |  SQLAlchemy  |  LangChain  |  OpenAI  |  Azure  |  Docker</div>
@@ -285,8 +291,7 @@ graph LR
             <article class="project-card" id="project-rag-support">
                 <div class="project-header">
                     <div>
-                        <p class="eyebrow">Project 2</p>
-                        <h3>RAG System for Customer Support</h3>
+                        <h3 class="project-title">RAG System for Customer Support</h3>
                         <p class="sub">RAG pipeline that helps support teams answer tickets using a knowledge base and historical conversations.</p>
                     </div>
                     <div class="stack">Python  |  LangChain  |  Chroma  |  Azure OpenAI  |  Redis  |  pytest</div>
@@ -426,8 +431,7 @@ flowchart LR
             <article class="project-card" id="project-agentic-cleaning">
                 <div class="project-header">
                     <div>
-                        <p class="eyebrow">Project 3</p>
-                        <h3>Agentic Workflow for Data Cleaning</h3>
+                        <h3 class="project-title">Agentic Workflow for Data Cleaning</h3>
                         <p class="sub">AI agent that cleans and normalises tabular data before analytics, escalating ambiguous fixes.</p>
                     </div>
                     <div class="stack">Python  |  Pandas  |  NumPy  |  LangGraph/CrewAI  |  Azure Functions  |  PostgreSQL</div>
@@ -592,8 +596,7 @@ sequenceDiagram
             <article class="project-card" id="project-eval-dashboard">
                 <div class="project-header">
                     <div>
-                        <p class="eyebrow">Project 4</p>
-                        <h3>Evaluation Dashboard for LLM Apps</h3>
+                        <h3 class="project-title">Evaluation Dashboard for LLM Apps</h3>
                         <p class="sub">Internal tool to evaluate and monitor prompts and model configurations over time.</p>
                     </div>
                     <div class="stack">Python  |  FastAPI  |  PostgreSQL  |  SQLAlchemy  |  Plotly  |  GitHub Actions</div>
@@ -764,10 +767,12 @@ jobs:
                 <p class="eyebrow">Contact</p>
                 <h2>Let's talk</h2>
             </div>
-            <div class="contact-grid">
-                <a href="mailto:hello@naithai.dev" class="contact-link"><i class="fa-solid fa-envelope"></i> hello@naithai.dev</a>
-                <a href="https://github.com/natiixnt" class="contact-link" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i> github.com/natiixnt</a>
-                <a href="https://www.linkedin.com/in/naithai/" class="contact-link" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/naithai</a>
+            <div class="contact-content">
+                <a href="mailto:natjiks@gmail.com" class="btn btn-primary contact-email">natjiks@gmail.com</a>
+                <div class="contact-links">
+                    <a class="btn btn-outline" href="https://github.com/natiixnt" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a class="btn btn-outline" href="https://www.linkedin.com/in/naithai/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
             </div>
         </section>
     </main>
