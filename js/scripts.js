@@ -1,34 +1,60 @@
-/*!
-* Start Bootstrap - Resume v7.0.6 (https://startbootstrap.com/theme/resume)
-* Copyright 2013-2025 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
+function initMermaid() {
+    if (window.mermaid) {
+        window.mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    }
+}
 
-window.addEventListener('DOMContentLoaded', event => {
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
 
-    // Activate Bootstrap scrollspy on the main nav element
-    const sideNav = document.body.querySelector('#sideNav');
-    if (sideNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#sideNav',
-            rootMargin: '0px 0px -40%',
-        });
-    };
+function decorateCodeBlocks() {
+    document.querySelectorAll('.code-block code').forEach((codeEl) => {
+        const raw = codeEl.textContent.replace(/^\n/, '').replace(/\s+$/, '');
+        codeEl.dataset.raw = raw;
+        const lines = raw.split('\n').map((line) => `<span>${escapeHtml(line)}</span>`).join('\n');
+        codeEl.innerHTML = lines;
 
-    // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
+        const block = codeEl.closest('.code-block');
+        if (block && !block.querySelector('.copy-btn')) {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.type = 'button';
+            btn.textContent = 'Copy';
+            block.appendChild(btn);
+        }
     });
+}
 
+function bindCopyButtons() {
+    document.addEventListener('click', async (event) => {
+        const btn = event.target.closest('.copy-btn');
+        if (!btn) return;
+        const block = btn.closest('.code-block');
+        const code = block?.querySelector('code');
+        if (!code) return;
+        const text = code.dataset.raw || '';
+        try {
+            await navigator.clipboard.writeText(text);
+            btn.textContent = 'Copied';
+            btn.classList.add('success');
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.classList.remove('success');
+            }, 1500);
+        } catch (err) {
+            console.error('Copy failed', err);
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initMermaid();
+    decorateCodeBlocks();
+    bindCopyButtons();
 });
