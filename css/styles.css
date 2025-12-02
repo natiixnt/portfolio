@@ -675,7 +675,8 @@ main {
     }
 
     .top-nav {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        justify-content: space-between;
     }
 
     .nav-links {
@@ -729,11 +730,6 @@ main {
         width: 100%;
     }
 
-    .top-nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .nav-actions {
         gap: 8px;
         flex-wrap: wrap;
@@ -769,10 +765,6 @@ main {
 @media (max-width: 480px) {
     main {
         padding: 0 14px;
-    }
-
-    .top-nav {
-        padding: 12px 14px;
     }
 
     .nav-links {
