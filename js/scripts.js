@@ -77,4 +77,21 @@ document.addEventListener('DOMContentLoaded', () => {
     initMermaid();
     decorateCodeBlocks();
     bindCopyButtons();
+
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (toggle && navLinks) {
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-links-open');
+            toggle.classList.toggle('nav-open');
+        });
+
+        navLinks.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('nav-links-open');
+                toggle.classList.remove('nav-open');
+            });
+        });
+    }
 });
