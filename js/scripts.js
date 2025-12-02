@@ -80,18 +80,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggle = document.querySelector('.nav-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileClose = document.querySelector('.mobile-close');
 
     if (toggle && mobileMenu) {
         toggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            toggle.classList.toggle('nav-open');
-        });
-
-        mobileMenu.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                toggle.classList.remove('nav-open');
-            });
+            mobileMenu.classList.add('open');
+            toggle.classList.add('nav-open');
         });
     }
+
+    if (mobileClose && mobileMenu) {
+        mobileClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            toggle?.classList.remove('nav-open');
+        });
+    }
+
+    mobileMenu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            toggle?.classList.remove('nav-open');
+        });
+    });
 });
