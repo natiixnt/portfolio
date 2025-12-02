@@ -21,12 +21,32 @@ function decorateCodeBlocks() {
         codeEl.innerHTML = lines;
 
         const block = codeEl.closest('.code-block');
-        if (block && !block.querySelector('.copy-btn')) {
+        if (block && !block.querySelector('.code-header')) {
+            const header = document.createElement('div');
+            header.className = 'code-header';
+
+            const meta = document.createElement('div');
+            meta.className = 'code-meta';
+
+            const title = document.createElement('span');
+            title.className = 'code-title';
+            title.textContent = block.getAttribute('data-title') || 'Code';
+
+            const lang = document.createElement('span');
+            lang.className = 'code-language';
+            lang.textContent = (block.getAttribute('data-lang') || '').toUpperCase();
+
+            meta.appendChild(title);
+            if (lang.textContent.trim()) meta.appendChild(lang);
+
             const btn = document.createElement('button');
             btn.className = 'copy-btn';
             btn.type = 'button';
             btn.textContent = 'Copy';
-            block.appendChild(btn);
+
+            header.appendChild(meta);
+            header.appendChild(btn);
+            block.prepend(header);
         }
     });
 }

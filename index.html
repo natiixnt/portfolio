@@ -706,27 +706,60 @@ jobs:
                             const dates = ["2025-01-10", "2025-01-17", "2025-01-24", "2025-01-31"];
                             const success = [0.91, 0.94, 0.9, 0.96];
                             const latency = [820, 790, 860, 740];
-                            Plotly.newPlot(
-                                "eval-chart",
-                                [
-                                    { x: dates, y: success, mode: "lines+markers", name: "Success rate", yaxis: "y1" },
-                                    { x: dates, y: latency, mode: "lines+markers", name: "P95 latency (ms)", yaxis: "y2" },
-                                ],
+                            const traces = [
                                 {
-                                    margin: { t: 10, r: 30, b: 30, l: 40 },
-                                    yaxis: { title: "Success", range: [0.75, 1] },
-                                    yaxis2: {
-                                        title: "Latency (ms)",
-                                        overlaying: "y",
-                                        side: "right",
-                                        range: [600, 950],
-                                    },
-                                    legend: { orientation: "h" },
-                                    paper_bgcolor: "transparent",
-                                    plot_bgcolor: "transparent",
+                                    x: dates,
+                                    y: success,
+                                    mode: "lines+markers",
+                                    name: "Success rate",
+                                    yaxis: "y1",
+                                    line: { width: 3, color: "#22d3ee" },
+                                    marker: { size: 7, color: "#22d3ee" },
                                 },
-                                { displayModeBar: false }
-                            );
+                                {
+                                    x: dates,
+                                    y: latency,
+                                    mode: "lines+markers",
+                                    name: "P95 latency (ms)",
+                                    yaxis: "y2",
+                                    line: { width: 3, color: "#a855f7" },
+                                    marker: { size: 7, color: "#a855f7" },
+                                },
+                            ];
+                            const layout = {
+                                margin: { t: 16, r: 50, b: 40, l: 50 },
+                                font: { color: "#e2e8f0", size: 12 },
+                                xaxis: {
+                                    title: "",
+                                    color: "#e2e8f0",
+                                    gridcolor: "rgba(148,163,184,0.25)",
+                                    tickfont: { size: 12 },
+                                    zeroline: false,
+                                },
+                                yaxis: {
+                                    title: "Success",
+                                    range: [0.75, 1],
+                                    color: "#e2e8f0",
+                                    gridcolor: "rgba(148,163,184,0.25)",
+                                    tickfont: { size: 12 },
+                                    zeroline: false,
+                                },
+                                yaxis2: {
+                                    title: "Latency (ms)",
+                                    overlaying: "y",
+                                    side: "right",
+                                    range: [600, 950],
+                                    color: "#e2e8f0",
+                                    gridcolor: "rgba(148,163,184,0.15)",
+                                    tickfont: { size: 12 },
+                                    zeroline: false,
+                                },
+                                legend: { orientation: "h", font: { color: "#e2e8f0", size: 12 } },
+                                paper_bgcolor: "transparent",
+                                plot_bgcolor: "transparent",
+                                hovermode: "x unified",
+                            };
+                            Plotly.newPlot("eval-chart", traces, layout, { displayModeBar: false, responsive: true });
                         });
                     </script>
                 </div>
