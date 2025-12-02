@@ -159,7 +159,7 @@ main {
 }
 
 .nav-center a {
-    color: #e2e8f0;
+    color: #e5e7eb;
     text-decoration: none;
 }
 
@@ -220,6 +220,10 @@ main {
 
 .nav-toggle.nav-open span:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-menu {
+    display: none;
 }
 
 .logo {
@@ -701,6 +705,10 @@ main {
 }
 
 @media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
     .hero-grid {
         grid-template-columns: 1fr;
     }
@@ -747,11 +755,25 @@ main {
     }
 
     .mobile-nav-links a {
+        color: #e5e7eb;
+        text-decoration: none;
         font-size: 0.95rem;
+    }
+
+    .mobile-nav-links a:hover {
+        color: #bfdbfe;
     }
 
     .mobile-menu .nav-cv {
         align-self: flex-start;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu,
+    .nav-toggle,
+    .mobile-close {
+        display: none !important;
     }
 }
 
