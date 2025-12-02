@@ -651,6 +651,12 @@ main {
         width: 100%;
         justify-content: flex-start;
     }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 640px) {
@@ -683,5 +689,61 @@ main {
     .nav-actions {
         gap: 8px;
         flex-wrap: wrap;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+        line-height: 1.25;
+    }
+
+    .code-block {
+        padding: 14px;
+    }
+
+    .code-block code {
+        font-size: 12px;
+    }
+
+    .code-block code span {
+        padding-left: 2.4rem;
+    }
+
+    .chart {
+        width: 100%;
+    }
+
+    .diagram {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 0 14px;
+    }
+
+    .top-nav {
+        padding: 12px 14px;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero .lede {
+        font-size: 15px;
+    }
+
+    .code-block code {
+        font-size: 11.5px;
+    }
+
+    .code-block code span {
+        padding-left: 2.2rem;
     }
 }
