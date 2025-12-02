@@ -144,6 +144,22 @@ main {
     justify-content: space-between;
     gap: 16px;
     padding: 0 24px;
+    position: relative;
+}
+
+.nav-left {
+    flex: 0 0 auto;
+}
+
+.nav-center {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-right {
+    flex: 0 0 auto;
 }
 
 .nav-links {
@@ -685,6 +701,12 @@ main {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 0 1rem;
+    }
+
+    .nav-center,
+    .nav-right {
+        display: none;
     }
 
     .nav-links {
@@ -713,6 +735,42 @@ main {
 
     .nav-links .nav-actions {
         width: 100%;
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        width: 70vw;
+        max-width: 320px;
+        background: #020617;
+        border-radius: 1rem;
+        padding: 1.25rem 1.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        display: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        z-index: 40;
+    }
+
+    .mobile-menu.open {
+        display: flex;
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .mobile-nav-links a {
+        font-size: 0.95rem;
+    }
+
+    .mobile-menu .nav-cv {
+        align-self: flex-start;
     }
 }
 

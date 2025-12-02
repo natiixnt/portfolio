@@ -79,17 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
     bindCopyButtons();
 
     const toggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
-    if (toggle && navLinks) {
+    if (toggle && mobileMenu) {
         toggle.addEventListener('click', () => {
-            navLinks.classList.toggle('nav-links-open');
+            mobileMenu.classList.toggle('open');
             toggle.classList.toggle('nav-open');
         });
 
-        navLinks.querySelectorAll('a').forEach((link) => {
+        mobileMenu.querySelectorAll('a').forEach((link) => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('nav-links-open');
+                mobileMenu.classList.remove('open');
                 toggle.classList.remove('nav-open');
             });
         });
