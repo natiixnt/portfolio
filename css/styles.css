@@ -143,6 +143,7 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    padding: 0 24px;
 }
 
 .nav-links {
@@ -674,7 +675,7 @@ main {
     padding: 12px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 768px) {
     .hero-grid {
         grid-template-columns: 1fr;
     }
