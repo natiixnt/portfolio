@@ -272,7 +272,8 @@ class DocumentChunk(Base):
                     </div>
                 </div>
                 <div class="diagram">
-<div class="mermaid">
+                    <div class="architecture-diagram">
+                        <div class="mermaid">
 graph LR
     User((User)) -->|question| API[FastAPI service]
     API --> Retriever[Retrieval layer]
@@ -281,7 +282,8 @@ graph LR
     Retriever --> LLM[LLM Provider]
     LLM --> API
     API -->|answer + sources| User
-</div>
+                        </div>
+                    </div>
                 </div>
                 <details class="project-details">
                     <summary>View more details</summary>
@@ -403,7 +405,8 @@ def test_retrieval_and_answer_quality(small_kb):
                     </div>
                 </div>
                 <div class="diagram">
-<div class="mermaid">
+                    <div class="architecture-diagram">
+                        <div class="mermaid">
 flowchart LR
     Ingest[Ingest adapters] --> Normalize[Normalize per source]
     Normalize --> Chunk[Smart chunking]
@@ -413,7 +416,8 @@ flowchart LR
     Retrieve --> Chroma
     Retrieve --> Compose[LLM composer]
     Compose --> Answer[Answer + citations]
-</div>
+                        </div>
+                    </div>
 <table class="metrics-table">
     <thead><tr><th>Prompt variant</th><th>Precision</th><th>Recall</th><th>Avg. latency (ms)</th></tr></thead>
     <tbody>
@@ -567,7 +571,8 @@ def build_data_cleaning_graph(audit_repo: AuditLogRepository):
                     </div>
                 </div>
                 <div class="diagram">
-<div class="mermaid">
+                    <div class="architecture-diagram">
+                        <div class="mermaid">
 sequenceDiagram
     participant Ingest
     participant Agent
@@ -578,7 +583,8 @@ sequenceDiagram
     Agent-->>Audit: write auto_fix
     Agent-->>Reviewer: request confirmation
     Reviewer-->>Audit: approve/override
-</div>
+                        </div>
+                    </div>
 <table class="metrics-table">
     <thead><tr><th>Field</th><th>Before</th><th>Suggested</th><th>After</th></tr></thead>
     <tbody>

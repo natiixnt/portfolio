@@ -498,6 +498,22 @@ main {
     width: 100%;
 }
 
+.architecture-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px 0;
+}
+
+.architecture-diagram img,
+.architecture-diagram svg,
+.architecture-diagram canvas,
+.architecture-diagram .mermaid {
+    max-width: 100%;
+    height: auto;
+}
+
 .metrics-table {
     border-collapse: collapse;
     width: 100%;
