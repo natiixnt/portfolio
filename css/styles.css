@@ -705,10 +705,6 @@ main {
 }
 
 @media (max-width: 768px) {
-    .nav-toggle {
-        display: flex;
-    }
-
     .hero-grid {
         grid-template-columns: 1fr;
     }
@@ -719,11 +715,6 @@ main {
         align-items: center;
         justify-content: space-between;
         padding: 0 1rem;
-    }
-
-    .nav-center,
-    .nav-right {
-        display: none;
     }
 
     .mobile-menu {
