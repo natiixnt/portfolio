@@ -7,7 +7,7 @@
     <meta name="author" content="Natalia Szczepanik" />
     <title>Natalia Szczepanik - AI Python Engineer | LLM, RAG, Cloud</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favico.ico" />
-    <link href="https://fonts.googleapis.com/css2->family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-dcKqcVv03Wj7dN0SmHgwlHGawEq+y3OC/YLXTr4Wr9PXgCulvRlQCk2BEmc6kAMPx/+qvOBvyBo3Z7V6m9Rc/w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
@@ -388,7 +388,7 @@ def fake_embeddings():
     return _Fake()
 
 def test_retrieval_and_answer_quality(small_kb):
-    question = "How long do refunds take->"
+    question = "How long do refunds take?"
     answer, meta = answer_question(question, store=small_kb)
 
     assert meta.similarity >= 0.68
@@ -570,7 +570,7 @@ sequenceDiagram
     participant Reviewer
     participant Audit
     Ingest->>Agent: anomalies list
-    Agent->>Agent: auto-fix eligible->
+    Agent->>Agent: auto-fix eligible?
     Agent-->>Audit: write auto_fix
     Agent-->>Reviewer: request confirmation
     Reviewer-->>Audit: approve/override
