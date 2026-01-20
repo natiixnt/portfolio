@@ -36,7 +36,7 @@
     const accent = rootStyles.getPropertyValue('--accent').trim() || '#2563eb';
     const accentAlt = rootStyles.getPropertyValue('--accent-2').trim() || '#0ea5e9';
     const textColor = '#e2e8f0';
-    const muted = '#94a3b8';
+    const muted = '#cbd5e1';
 
     let chartsRequested = false;
     let plotlyPromise;
@@ -63,7 +63,7 @@
     const renderCharts = () => {
         const config = { displayModeBar: false, responsive: true };
         const layoutBase = {
-            margin: { t: 8, r: 8, b: 40, l: 42 },
+            margin: { t: 8, r: 24, b: 52, l: 48 },
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
             font: { color: textColor }
@@ -89,10 +89,15 @@
 
             const layout = {
                 ...layoutBase,
-                xaxis: { tickfont: { color: muted }, automargin: true },
+                xaxis: {
+                    tickfont: { color: muted, size: 11 },
+                    tickangle: -30,
+                    tickpadding: 6,
+                    automargin: true
+                },
                 yaxis: {
                     range: [0, 100],
-                    tickfont: { color: muted },
+                    tickfont: { color: muted, size: 11 },
                     gridcolor: 'rgba(148, 163, 184, 0.15)'
                 }
             };
@@ -115,10 +120,10 @@
 
             const layout = {
                 ...layoutBase,
-                xaxis: { tickfont: { color: muted } },
+                xaxis: { tickfont: { color: muted, size: 11 }, automargin: true },
                 yaxis: {
                     range: [0, 100],
-                    tickfont: { color: muted },
+                    tickfont: { color: muted, size: 11 },
                     gridcolor: 'rgba(148, 163, 184, 0.15)'
                 }
             };
@@ -141,6 +146,8 @@
                 hole: 0.58,
                 textinfo: 'label+percent',
                 textposition: 'inside',
+                textfont: { color: '#f8fafc', size: 11 },
+                insidetextorientation: 'radial',
                 marker: {
                     colors: [
                         'rgba(37, 99, 235, 0.8)',
@@ -155,6 +162,7 @@
             const layout = {
                 ...layoutBase,
                 margin: { t: 8, r: 8, b: 8, l: 8 },
+                uniformtext: { minsize: 10, mode: 'show' },
                 showlegend: false
             };
 
