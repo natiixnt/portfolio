@@ -65,6 +65,8 @@ a:hover {
 }
 
 .btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8, #0284c7);
+    color: #fff;
     transform: translateY(-1px);
     box-shadow: 0 14px 42px rgba(37, 99, 235, 0.32);
 }
@@ -76,8 +78,9 @@ a:hover {
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.14);
     border-color: rgba(226, 232, 240, 0.6);
+    color: #fff;
 }
 
 .btn-outline {
@@ -87,8 +90,9 @@ a:hover {
 }
 
 .btn-outline:hover {
-    border-color: rgba(226, 232, 240, 0.6);
-    color: #fff;
+    background: #e2e8f0;
+    border-color: #e2e8f0;
+    color: #0b1525;
 }
 
 main {
@@ -977,6 +981,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow: hidden;
 }
 
 .portfolio-ai .chart-card .section-label {
@@ -993,6 +998,7 @@ main {
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
 }
 
 .portfolio-ai .rag-pipeline {
@@ -1118,17 +1124,6 @@ main {
         gap: 0;
         padding: 8px 0 0;
         align-items: start;
-    }
-
-    .portfolio-ai .rag-pipeline::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 16px;
-        height: 2px;
-        background: linear-gradient(90deg, rgba(37, 99, 235, 0.3), rgba(14, 165, 233, 0.3));
-        z-index: 0;
     }
 
     .portfolio-ai .rag-step {

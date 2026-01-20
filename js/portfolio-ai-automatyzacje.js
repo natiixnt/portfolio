@@ -36,7 +36,7 @@
     const accent = rootStyles.getPropertyValue('--accent').trim() || '#2563eb';
     const accentAlt = rootStyles.getPropertyValue('--accent-2').trim() || '#0ea5e9';
     const textColor = '#e2e8f0';
-    const muted = '#cbd5e1';
+    const muted = '#e2e8f0';
 
     let chartsRequested = false;
     let plotlyPromise;
@@ -63,7 +63,7 @@
     const renderCharts = () => {
         const config = { displayModeBar: false, responsive: true };
         const layoutBase = {
-            margin: { t: 8, r: 24, b: 52, l: 48 },
+            margin: { t: 12, r: 18, b: 64, l: 54 },
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
             font: { color: textColor }
@@ -90,14 +90,14 @@
             const layout = {
                 ...layoutBase,
                 xaxis: {
-                    tickfont: { color: muted, size: 11 },
-                    tickangle: -30,
-                    tickpadding: 6,
+                    tickfont: { color: muted, size: 12 },
+                    tickangle: -24,
+                    tickpadding: 8,
                     automargin: true
                 },
                 yaxis: {
                     range: [0, 100],
-                    tickfont: { color: muted, size: 11 },
+                    tickfont: { color: muted, size: 12 },
                     gridcolor: 'rgba(148, 163, 184, 0.15)'
                 }
             };
@@ -120,10 +120,10 @@
 
             const layout = {
                 ...layoutBase,
-                xaxis: { tickfont: { color: muted, size: 11 }, automargin: true },
+                xaxis: { tickfont: { color: muted, size: 12 }, automargin: true },
                 yaxis: {
                     range: [0, 100],
-                    tickfont: { color: muted, size: 11 },
+                    tickfont: { color: muted, size: 12 },
                     gridcolor: 'rgba(148, 163, 184, 0.15)'
                 }
             };
@@ -146,7 +146,9 @@
                 hole: 0.58,
                 textinfo: 'label+percent',
                 textposition: 'inside',
-                textfont: { color: '#f8fafc', size: 11 },
+                textfont: { color: '#f8fafc', size: 12 },
+                insidetextfont: { color: '#f8fafc', size: 12 },
+                outsidetextfont: { color: '#f8fafc', size: 12 },
                 insidetextorientation: 'radial',
                 marker: {
                     colors: [
