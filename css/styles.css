@@ -709,6 +709,10 @@ main {
         grid-template-columns: 1fr;
     }
 
+    .nav-center {
+        flex-wrap: wrap;
+    }
+
     .nav-bar {
         width: 100%;
         display: flex;
@@ -841,5 +845,285 @@ main {
 
     .code-block code span {
         padding-left: 2.2rem;
+    }
+}
+
+/* AI agents and automation portfolio page */
+.portfolio-ai .nav-center {
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.portfolio-ai .nav-center a {
+    font-size: 0.95rem;
+}
+
+.portfolio-ai .trust-list {
+    list-style: none;
+    margin: 16px 0 20px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    color: #cbd5e1;
+}
+
+.portfolio-ai .trust-list li {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+    align-items: start;
+}
+
+.portfolio-ai .trust-list i {
+    color: var(--accent-2);
+    margin-top: 2px;
+}
+
+.portfolio-ai .kpi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.portfolio-ai .service-card ul,
+.portfolio-ai .deliverables ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #cbd5e1;
+}
+
+.portfolio-ai .case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+.portfolio-ai .case-card {
+    background: #0b1220;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    color: #e2e8f0;
+}
+
+.portfolio-ai .case-card h3 {
+    margin: 0 0 12px;
+    font-size: 22px;
+}
+
+.portfolio-ai .case-block {
+    margin-bottom: 14px;
+}
+
+.portfolio-ai .case-block:last-child {
+    margin-bottom: 0;
+}
+
+.portfolio-ai .section-label {
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.portfolio-ai .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.portfolio-ai .checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.portfolio-ai .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    border: 1px solid transparent;
+}
+
+.portfolio-ai .status-success {
+    background: rgba(34, 197, 94, 0.16);
+    border-color: rgba(34, 197, 94, 0.35);
+    color: #bbf7d0;
+}
+
+.portfolio-ai .status-warning {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.35);
+    color: #fde68a;
+}
+
+.portfolio-ai .status-pill i {
+    font-size: 12px;
+}
+
+.portfolio-ai .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+}
+
+.portfolio-ai .chart-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.portfolio-ai .chart {
+    min-height: 240px;
+}
+
+.portfolio-ai .rag-panel {
+    margin-top: 28px;
+}
+
+.portfolio-ai .rag-pipeline {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.portfolio-ai .rag-step {
+    position: relative;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.portfolio-ai .rag-step:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
+}
+
+.portfolio-ai .deliverables {
+    margin-top: 20px;
+}
+
+.portfolio-ai .faq-list {
+    display: grid;
+    gap: 12px;
+}
+
+.portfolio-ai .faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #e2e8f0;
+}
+
+.portfolio-ai .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+}
+
+.portfolio-ai .faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.portfolio-ai .faq-item summary::after {
+    content: "+";
+    float: right;
+    color: var(--accent-2);
+}
+
+.portfolio-ai .faq-item[open] summary::after {
+    content: "-";
+}
+
+.portfolio-ai .faq-item p {
+    margin: 10px 0 0;
+    color: #cbd5e1;
+}
+
+.portfolio-ai .cta-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.portfolio-ai a:focus-visible,
+.portfolio-ai button:focus-visible,
+.portfolio-ai summary:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
+}
+
+.portfolio-ai .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.portfolio-ai .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 900px) {
+    .portfolio-ai .rag-pipeline {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .portfolio-ai .rag-step::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 8px);
+        transform: translate(-50%, 6px);
+        background: #020617;
+        color: #e2e8f0;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        border-radius: 10px;
+        padding: 8px 10px;
+        width: 180px;
+        font-size: 11px;
+        line-height: 1.4;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        text-transform: none;
+    }
+
+    .portfolio-ai .rag-step:hover::after,
+    .portfolio-ai .rag-step:focus-visible::after {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (max-width: 640px) {
+    .portfolio-ai .reveal {
+        transform: translateY(6px);
+        transition-duration: 0.45s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-ai .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }
