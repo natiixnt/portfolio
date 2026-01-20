@@ -1,0 +1,488 @@
+doctype html
+- const trustBullets = [
+-     'NDA-friendly portfolio - case studies anonimizowane lub kompozytowe',
+-     'MVP szybko, bez kompromisu na jakości i stabilności',
+-     'Guardrails, evals, monitoring - kontrola kosztu i jakości',
+-     'Integracje: Slack/Teams, CRM, Jira, bazy danych, API, SSO'
+- ];
+- const kpis = [
+-     {
+-         title: 'Redukcja pracy ręcznej',
+-         text: 'Automatyzacja powtarzalnych kroków i mniej operacji kopiuj-wklej.'
+-     },
+-     {
+-         title: 'Szybsze przygotowanie dokumentów',
+-         text: 'Oferty, podsumowania, raporty i checklisty generowane w standardzie.'
+-     },
+-     {
+-         title: 'Mniej błędów operacyjnych',
+-         text: 'Walidacje, audytowalność i spójność procesu.'
+-     },
+-     {
+-         title: 'Krótszy czas odpowiedzi',
+-         text: 'Asystenci RAG i workflowy wspierające zespoły w codziennej pracy.'
+-     }
+- ];
+- const services = [
+-     {
+-         title: 'Agenci AI do pracy z narzędziami',
+-         description: 'Agenci, którzy wykonują zadania wieloetapowe: planowanie, używanie narzędzi, weryfikacje i finalny raport.',
+-         points: [
+-             'Tool calling / function calling, workflowy wieloetapowe',
+-             'Kontrola halucynacji: retrieval, cytowania, walidacje',
+-             'Degradacja kontrolowana: fallbacki, tryby offline, manual review'
+-         ]
+-     },
+-     {
+-         title: 'RAG i wyszukiwanie wiedzy',
+-         description: 'Asystenci i agenci opierający się na firmowej wiedzy z dokumentów, intranetu i baz danych.',
+-         points: [
+-             'Pipeline: chunking, embeddings, vector DB, reranking',
+-             'Uprawnienia i kontrola dostępu do danych',
+-             'Evals jakości wyszukiwania i odpowiedzi'
+-         ]
+-     },
+-     {
+-         title: 'Automatyzacje procesów (backend + integracje)',
+-         description: 'Automatyzacje, które realnie zmniejszają koszty operacyjne i błędy, bez utraty kontroli nad procesem.',
+-         points: [
+-             'Integracje API: CRM, ERP, Jira, email, kalendarze',
+-             'Kolejki i retry: niezawodność i odtwarzalność',
+-             'Audytowalność: logi zdarzeń, wersjonowanie promptów'
+-         ]
+-     },
+-     {
+-         title: 'Produkcyjne wdrożenia i jakość',
+-         description: 'Zamieniam POC w produkcję - z testami, monitoringiem, SLA i przewidywalnym kosztem.',
+-         points: [
+-             'CI/CD, testy, code review, standardy jakości',
+-             'Observability: tracing, metryki, alerting, dashboards',
+-             'Polityki bezpieczeństwa: PII, redakcja, prompt injection defense'
+-         ]
+-     }
+- ];
+- const caseStudies = [
+-     {
+-         title: 'Agent ofertowania i wycen',
+-         problem: 'Zespół sprzedaży tracił czas na ręczne kompletowanie danych, wyliczenia i przygotowanie ofert w spójną formę.',
+-         solution: 'Zaprojektowałam agenta, który prowadzi użytkownika przez wymagania, pobiera dane z kilku źródeł (CRM, cenniki, dokumentacja), wylicza warianty oraz generuje gotowy draft oferty z uzasadnieniem i listą ryzyk. Dodałam tryb human-in-the-loop dla newralgicznych fragmentów oraz walidacje zgodności z polityką cenową.',
+-         stack: ['Python', 'FastAPI', 'Postgres', 'SQLAlchemy', 'Redis', 'OpenAI/Azure OpenAI', 'RAG', 'Docker', 'CI/CD'],
+-         result: 'Krótszy czas przygotowania oferty, mniej błędów w kalkulacjach i spójniejszy standard materiałów.',
+-         hil: 'wdrozone'
+-     },
+-     {
+-         title: 'Asystent obsługi klienta z bazą wiedzy (RAG)',
+-         problem: 'Duże obciążenie supportu przez powtarzalne pytania oraz rozproszone źródła wiedzy (PDF, wiki, procedury).',
+-         solution: 'Zbudowałam pipeline RAG z kontrolą uprawnień oraz mechanizmem cytowania źródeł. Asystent odpowiada w oparciu o aktualne dokumenty, a w razie niskiej pewności automatycznie proponuje eskalację do człowieka. Dodałam ewaluacje jakości i monitoring halucynacji.',
+-         stack: ['Python', 'FastAPI', 'embeddings', 'vector DB', 'Postgres', 'OpenAI/Azure OpenAI', 'Docker', 'OpenTelemetry'],
+-         result: 'Odciążenie pierwszej linii wsparcia, szybsze odpowiedzi i widoczność braków w dokumentacji.',
+-         hil: 'wdrozone'
+-     },
+-     {
+-         title: 'Agent analizy dokumentów i zgodności (compliance)',
+-         problem: 'Ręczne przeglądanie umów i dokumentów było czasochłonne, a ryzyko pominięcia kluczowych zapisów wysokie.',
+-         solution: 'Agent klasyfikuje dokument, wyciąga kluczowe klauzule, flaguje ryzyka i generuje checklistę do weryfikacji. Zastosowałam polityki PII, redakcję danych i walidacje wyników oraz eskalacje do człowieka tam, gdzie to konieczne.',
+-         stack: ['Python', 'FastAPI', 'LLM', 'ekstrakcja struktury', 'Postgres', 'storage', 'CI/CD'],
+-         result: 'Szybszy przegląd dokumentów, lepsza powtarzalność oceny i audytowalne logi.',
+-         hil: 'wdrozone'
+-     },
+-     {
+-         title: 'Automatyzacja back-office (workflowy + integracje)',
+-         problem: 'Zespół operacyjny obsługiwał powtarzalne procesy w wielu narzędziach, co generowało opóźnienia i błędy.',
+-         solution: 'Workflow zbiera dane z kilku systemów, waliduje je, aktualizuje rekordy i generuje podsumowanie. Dodałam kolejkowanie, retry i dead-letter queue oraz panel statusów. W newralgicznych krokach zastosowałam zatwierdzanie przez człowieka.',
+-         stack: ['Python', 'FastAPI', 'kolejki zadań', 'Postgres', 'integracje API', 'Docker'],
+-         result: 'Mniej pracy ręcznej, mniej błędów i lepsza przewidywalność procesu.',
+-         hil: 'wdrozone'
+-     },
+-     {
+-         title: 'Agent planowania i priorytetyzacji zadań',
+-         problem: 'Trudność z priorytetyzacją zadań i rozbijaniem tematów na wykonalne kroki w projektach wielowątkowych.',
+-         solution: 'Agent zbiera kontekst, proponuje plan w formie backlogu oraz tworzy zadania w Jira wraz z acceptance criteria. Zastosowałam szablony i walidacje, aby utrzymać stały standard, oraz mechanizm feedbacku.',
+-         stack: ['Python', 'integracje Jira', 'LLM', 'Postgres', 'observability'],
+-         result: 'Szybsze planowanie, lepsza jakość ticketów i mniej chaosu w priorytetach.',
+-         hil: 'opcjonalnie'
+-     },
+-     {
+-         title: 'Agent do raportowania i analityki (LLM + data)',
+-         problem: 'Raporty były ręcznie składane z różnych źródeł, a odpowiedzi na pytania biznesu zajmowały zbyt dużo czasu.',
+-         solution: 'Bezpieczna warstwa do zadawania pytań o dane z kontrolą uprawnień. Agent generuje zapytania, uruchamia je i tłumaczy wyniki, z walidacjami, limitami kosztu i szablonami raportów.',
+-         stack: ['Python', 'SQL', 'Postgres', 'FastAPI', 'LLM', 'harmonogramy', 'dashboards'],
+-         result: 'Szybsze odpowiedzi, standard raportowania oraz kontrola kosztu i ryzyka.',
+-         hil: 'opcjonalnie'
+-     }
+- ];
+- const processSteps = [
+-     {
+-         title: 'Discovery i analiza potrzeb',
+-         text: 'Doprecyzowujemy use case, dane, ryzyka i kryteria sukcesu.'
+-     },
+-     {
+-         title: 'Architektura i plan wdrożenia',
+-         text: 'Dobór architektury, integracji, plan MVP i backlog.'
+-     },
+-     {
+-         title: 'MVP i szybki feedback',
+-         text: 'Szybka wersja działająca i iteracje na realnych scenariuszach.'
+-     },
+-     {
+-         title: 'Hardening i jakość',
+-         text: 'Guardrails, evals, testy, monitoring, kontrola kosztu i bezpieczeństwo.'
+-     },
+-     {
+-         title: 'Wdrożenie i rozwój',
+-         text: 'Stabilne wdrożenie, dokumentacja i dalsze iteracje.'
+-     }
+- ];
+- const deliverables = [
+-     'Diagram architektury i przepływów',
+-     'Specyfikacja MVP + backlog',
+-     'Wersja produkcyjna (lub pilot) z monitoringiem',
+-     'Zestaw testów i evals',
+-     'Dokumentacja i instrukcja utrzymania'
+- ];
+- const techGroups = [
+-     {
+-         title: 'Backend',
+-         tags: ['Python', 'FastAPI', 'REST API', 'async', 'background jobs', 'kolejkowanie', 'integracje']
+-     },
+-     {
+-         title: 'AI',
+-         tags: ['OpenAI / Azure OpenAI', 'prompt engineering', 'tool calling', 'RAG', 'evals', 'guardrails']
+-     },
+-     {
+-         title: 'Data',
+-         tags: ['Postgres', 'SQLAlchemy', 'Redis', 'vector DB (np. pgvector lub równoważne)', 'pipeline danych']
+-     },
+-     {
+-         title: 'DevOps i jakość',
+-         tags: ['Docker', 'CI/CD', 'testy (unit/integration)', 'logging', 'OpenTelemetry', 'monitoring', 'alerting']
+-     }
+- ];
+- const faqItems = [
+-     {
+-         question: 'Czy można zobaczyć więcej szczegółów projektów?',
+-         answer: 'Tak. Większość realizacji jest objęta NDA, ale mogę pokazać dodatkowe materiały po podpisaniu NDA lub w formie zanonimizowanych diagramów i przepływów.'
+-     },
+-     {
+-         question: 'Ile trwa MVP?',
+-         answer: 'Najczęściej 1-3 tygodnie, zależy od danych i integracji. Wersja produkcyjna dojrzewa w kolejnych iteracjach.'
+-     },
+-     {
+-         question: 'Jak ograniczasz halucynacje?',
+-         answer: 'RAG, walidacje, guardrails, evals na zestawie testowym oraz progi pewności i eskalacje do człowieka.'
+-     },
+-     {
+-         question: 'Jak kontrolujesz koszty LLM?',
+-         answer: 'Limity, budżety per request, cache, dobieranie modeli do zadania, kompresja kontekstu.'
+-     },
+-     {
+-         question: 'Czy to działa po polsku?',
+-         answer: 'Tak. Prompty i testy są projektowane pod język polski, a w razie potrzeby wdrażam wersję dwujęzyczną.'
+-     },
+-     {
+-         question: 'Jakie integracje są możliwe?',
+-         answer: 'API systemów (CRM/ERP/Jira), Slack/Teams, email i kalendarze, bazy danych i źródła dokumentów.'
+-     }
+- ];
+- const ragSteps = [
+-     {
+-         title: 'Źródła danych',
+-         tooltip: 'Dokumenty, CRM, bazy danych i intranet.'
+-     },
+-     {
+-         title: 'Ingestion',
+-         tooltip: 'Pobranie i normalizacja danych z różnych źródeł.'
+-     },
+-     {
+-         title: 'Chunking',
+-         tooltip: 'Podział na fragmenty i metadane.'
+-     },
+-     {
+-         title: 'Embeddings',
+-         tooltip: 'Wektoryzacja treści do wyszukiwania.'
+-     },
+-     {
+-         title: 'Vector DB',
+-         tooltip: 'Przechowywanie wektorów i metadanych.'
+-     },
+-     {
+-         title: 'Retrieval',
+-         tooltip: 'Wyszukiwanie najbardziej trafnych fragmentów.'
+-     },
+-     {
+-         title: 'Reranking',
+-         tooltip: 'Ponowna ocena trafności pod pytanie.'
+-     },
+-     {
+-         title: 'Odpowiedź z cytowaniami',
+-         tooltip: 'Generacja odpowiedzi z linkami do źródeł.'
+-     }
+- ];
+html(lang='pl')
+
+    head
+
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(name='description', content='Projektuję i wdrażam agentów AI oraz automatyzacje end-to-end: discovery, architektura, RAG, integracje, testy i wdrożenia. NDA-friendly case studies, podejście nastawione na jakość i produkcję.')
+        meta(name='author', content='Natalia Szczepanik')
+        meta(property='og:title', content='Agenci AI i automatyzacje - Natalia Szczepanik')
+        meta(property='og:description', content='Anonimizowane case studies agentów AI, workflowów i automatyzacji. Produkcyjne wdrożenia, guardrails, observability, integracje i mierzalne efekty.')
+        meta(property='og:type', content='website')
+
+        title Agenci AI i automatyzacje - Portfolio | Natalia Szczepanik
+
+        link(rel='icon', type='image/x-icon', href='../../assets/img/favicon.ico')
+
+        // Font Awesome icons (free version)
+        script(src='https://use.fontawesome.com/releases/v6.3.0/js/all.js', crossorigin='anonymous')
+
+        // Google fonts
+        link(href='https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700', rel='stylesheet', type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i', rel='stylesheet', type='text/css')
+
+        // Core theme CSS (includes Bootstrap)
+        link(href='../../css/styles.css', rel='stylesheet')
+
+    body#page-top
+
+        // Navigation
+        nav#sideNav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top
+            a.navbar-brand.js-scroll-trigger(href='../../index.html')
+                span.d-block.d-lg-none Natalia Szczepanik
+                span.d-none.d-lg-block
+                    img.img-fluid.img-profile.rounded-circle.mx-auto.mb-2(src='../../assets/img/profile.jpg', alt='Headshot of Natalia Szczepanik')
+            button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarResponsive.collapse.navbar-collapse
+                ul.navbar-nav
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='../../index.html') Strona główna
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#hero') Start
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#kpi') Efekty
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#services') Usługi
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#case-studies') Case studies
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#charts') Wdrożenie
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#process') Proces
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#tech') Stack
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#faq') FAQ
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#contact') Kontakt
+
+        // Page Content
+        main.container-fluid.p-0
+
+            // Hero
+            section#hero.portfolio-section
+                .portfolio-section-content
+                    span.subheading.mb-2 Portfolio - agenci AI i automatyzacje
+                    h1.portfolio-title.mb-3 Agenci AI i automatyzacje
+                    p.lead.mb-4
+                        | Projektuję i wdrażam agentów AI oraz automatyzacje procesów end-to-end - od discovery i architektury, przez implementację, po testy, monitoring i wdrożenie. Specjalizuję się w rozwiązaniach, które są produkcyjne, skalowalne i bezpieczne, z naciskiem na jakość odpowiedzi (evals) oraz integracje z systemami firmy.
+                    ul.fa-ul.mb-4
+                        each item in trustBullets
+                            li
+                                span.fa-li
+                                    i.fas.fa-check(aria-hidden='true')
+                                | #{item}
+                    .d-flex.flex-wrap.gap-3
+                        a.btn.btn-primary.btn-lg(href='mailto:hello@naithai.dev') Umów rozmowę
+                        a.btn.btn-outline-primary.btn-lg(href='#case-studies') Zobacz realizacje
+
+            hr.m-0
+
+            // KPI Cards
+            section#kpi.portfolio-section
+                .portfolio-section-content
+                    h2.mb-4 Typowe efekty wdrożeń
+                    .row.g-4
+                        each card in kpis
+                            .col-12.col-md-6.col-lg-3
+                                .card.h-100.border-0.shadow-sm.reveal(data-reveal='fade-up')
+                                    .card-body
+                                        h3.h5.text-primary.mb-2= card.title
+                                        p.mb-0= card.text
+
+            hr.m-0
+
+            // Services
+            section#services.portfolio-section
+                .portfolio-section-content
+                    h2.mb-4 Usługi
+                    .row.g-4
+                        each service in services
+                            .col-12.col-lg-6
+                                .card.h-100.border-0.shadow-sm.reveal(data-reveal='fade-up')
+                                    .card-body
+                                        h3.h5.text-primary.mb-2= service.title
+                                        p.mb-3= service.description
+                                        ul.fa-ul.mb-0
+                                            each point in service.points
+                                                li
+                                                    span.fa-li
+                                                        i.fas.fa-check(aria-hidden='true')
+                                                    | #{point}
+
+            hr.m-0
+
+            // Case studies
+            section#case-studies.portfolio-section
+                .portfolio-section-content
+                    h2.mb-3 Case studies (NDA-friendly)
+                    p.lead.mb-4
+                        | Poniżej przedstawiam anonimizowane realizacje (w części kompozytowe) z projektów objętych NDA. Opisuję podejście architektoniczne, stos technologiczny i mierzalne efekty, bez ujawniania danych klienta.
+                    .row.g-4
+                        each study in caseStudies
+                            .col-12.col-lg-6
+                                .card.h-100.border-0.shadow-sm.reveal(data-reveal='fade-up')
+                                    .card-body
+                                        h3.h5.text-primary.mb-3= study.title
+                                        h4.h6.text-uppercase Problem
+                                        p.mb-3= study.problem
+                                        h4.h6.text-uppercase Rozwiązanie
+                                        p.mb-3= study.solution
+                                        h4.h6.text-uppercase Stack
+                                        .d-flex.flex-wrap.gap-2.mb-3
+                                            each tag in study.stack
+                                                span.badge.bg-light.text-dark.border.text-wrap= tag
+                                        h4.h6.text-uppercase Wynik
+                                        p.mb-3= study.result
+                                        h4.h6.text-uppercase Quality & Safety checklist
+                                        ul.list-unstyled.mb-0
+                                            li.mb-2
+                                                span.badge.bg-success
+                                                    i.fas.fa-circle-check.me-1(aria-hidden='true')
+                                                    | Evals: wdrożone
+                                            li.mb-2
+                                                span.badge.bg-success
+                                                    i.fas.fa-circle-check.me-1(aria-hidden='true')
+                                                    | Guardrails: wdrożone
+                                            li.mb-2
+                                                span.badge.bg-success
+                                                    i.fas.fa-circle-check.me-1(aria-hidden='true')
+                                                    | Observability: wdrożone
+                                            li
+                                                if study.hil === 'wdrozone'
+                                                    span.badge.bg-success
+                                                        i.fas.fa-circle-check.me-1(aria-hidden='true')
+                                                        | Human-in-the-loop: wdrożone
+                                                else
+                                                    span.badge.bg-warning.text-dark
+                                                        i.fas.fa-circle-info.me-1(aria-hidden='true')
+                                                        | Human-in-the-loop: opcjonalnie
+
+            hr.m-0
+
+            // Charts
+            section#charts.portfolio-section(data-charts-section='true')
+                .portfolio-section-content
+                    h2.mb-3 Jak wygląda wdrożenie w praktyce
+                    p.lead.mb-4
+                        | Wizualizacje pokazują typowy przebieg projektu i obszary, w których wdrożenia najczęściej przynoszą mierzalną wartość.
+                    .row.g-4
+                        .col-12.col-lg-4
+                            .card.h-100.border-0.shadow-sm.reveal(data-reveal='fade-up')
+                                .card-body
+                                    h3.h6.text-uppercase.mb-3 Obszary poprawy (indeks)
+                                    .chart-frame
+                                        canvas#chart-improvement.chart-canvas(role='img', aria-label='Wykres słupkowy obszary poprawy')
+                        .col-12.col-lg-4
+                            .card.h-100.border-0.shadow-sm.reveal(data-reveal='fade-up')
+                                .card-body
+                                    h3.h6.text-uppercase.mb-3 Dojrzałość rozwiązania w czasie (przykładowo)
+                                    .chart-frame
+                                        canvas#chart-maturity.chart-canvas(role='img', aria-label='Wykres liniowy dojrzałość rozwiązania w czasie')
+                        .col-12.col-lg-4
+                            .card.h-100.border-0.shadow-sm.reveal(data-reveal='fade-up')
+                                .card-body
+                                    h3.h6.text-uppercase.mb-3 Struktura czasu w projekcie (typowo)
+                                    .chart-frame
+                                        canvas#chart-time.chart-canvas(role='img', aria-label='Wykres donut struktura czasu w projekcie')
+                    .mt-5
+                        h3.h5.text-uppercase.mb-3 Pipeline RAG
+                        p.mb-4
+                            | Poniżej widzisz przykładowy przebieg pipeline RAG. Na desktopie tooltipy opisują kroki, a na mobile układają się pionowo.
+                        .rag-pipeline.reveal(data-reveal='fade-up')
+                            each step, index in ragSteps
+                                .rag-step(tabindex='0', title=step.tooltip, aria-label=step.title)
+                                    span= step.title
+
+            hr.m-0
+
+            // Process
+            section#process.portfolio-section
+                .portfolio-section-content
+                    h2.mb-3 Jak pracuję - od pomysłu do produkcji
+                    p.lead.mb-4
+                        | Pracuję iteracyjnie. Zaczynam od celu biznesowego i ograniczeń (dane, bezpieczeństwo, narzędzia), a dopiero potem dobieram modele i architekturę. W każdym etapie dbam o to, żeby rozwiązanie było mierzalne, stabilne i możliwe do utrzymania.
+                    .timeline.reveal(data-reveal='fade-up')
+                        each step in processSteps
+                            .timeline-item
+                                span.timeline-marker(aria-hidden='true')
+                                h3.h5.mb-2= step.title
+                                p.mb-0= step.text
+                    h3.h5.text-uppercase.mt-5.mb-3 Deliverables
+                    ul.fa-ul.mb-0
+                        each item in deliverables
+                            li
+                                span.fa-li
+                                    i.fas.fa-check(aria-hidden='true')
+                                | #{item}
+
+            hr.m-0
+
+            // Tech stack
+            section#tech.portfolio-section
+                .portfolio-section-content
+                    h2.mb-4 Tech stack
+                    .row.g-4
+                        each group in techGroups
+                            .col-12.col-lg-6
+                                .card.h-100.border-0.shadow-sm.reveal(data-reveal='fade-up')
+                                    .card-body
+                                        h3.h5.text-primary.mb-3= group.title
+                                        .d-flex.flex-wrap.gap-2
+                                            each tag in group.tags
+                                                span.badge.bg-light.text-dark.border.text-wrap= tag
+
+            hr.m-0
+
+            // FAQ
+            section#faq.portfolio-section
+                .portfolio-section-content
+                    h2.mb-4 FAQ
+                    #faqAccordion.accordion.reveal(data-reveal='fade-up')
+                        each item, index in faqItems
+                            - const headingId = `faq-heading-${index}`;
+                            - const collapseId = `faq-collapse-${index}`;
+                            .accordion-item
+                                h3.accordion-header(id=headingId)
+                                    button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target=`#${collapseId}`, aria-expanded='false', aria-controls=collapseId)= item.question
+                                .accordion-collapse.collapse(id=collapseId, aria-labelledby=headingId, data-bs-parent='#faqAccordion')
+                                    .accordion-body= item.answer
+
+            hr.m-0
+
+            // Final CTA
+            section#contact.portfolio-section
+                .portfolio-section-content
+                    .p-4.p-lg-5.bg-light.rounded-3.shadow-sm.reveal(data-reveal='fade-up')
+                        h2.mb-3 Masz pomysł na agenta AI albo automatyzację procesu?
+                        p.lead.mb-4
+                            | Opowiedz w 2-3 zdaniach, co chcesz usprawnić, a ja zaproponuję podejście, architekturę MVP i realny plan wdrożenia.
+                        .d-flex.flex-wrap.gap-3
+                            a.btn.btn-primary.btn-lg(href='mailto:hello@naithai.dev') Napisz do mnie
+                            a.btn.btn-outline-primary.btn-lg(href='https://www.linkedin.com/in/naithai/', target='_blank', rel='noreferrer') Umów rozmowę
+
+        script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js')
+        script(src='../../js/scripts.js')
+        script(src='https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js', defer=true)
+        script(src='../../js/portfolio-ai-automation.js', defer=true)
