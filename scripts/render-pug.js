@@ -13,7 +13,8 @@ module.exports = function renderPug(filePath) {
     const html = pug.renderFile(filePath, {
         doctype: 'html',
         filename: filePath,
-        basedir: srcPath
+        basedir: srcPath,
+        compileDebug: false
     });
 
     const destPathDirname = upath.dirname(destPath);

@@ -1,11 +1,11 @@
 doctype html
-- const trustBullets = [
+- var trustBullets = [
 -     'NDA-friendly portfolio - case studies anonimizowane lub kompozytowe',
 -     'MVP szybko, bez kompromisu na jakości i stabilności',
 -     'Guardrails, evals, monitoring - kontrola kosztu i jakości',
 -     'Integracje: Slack/Teams, CRM, Jira, bazy danych, API, SSO'
 - ];
-- const kpis = [
+- var kpis = [
 -     {
 -         title: 'Redukcja pracy ręcznej',
 -         text: 'Automatyzacja powtarzalnych kroków i mniej operacji kopiuj-wklej.'
@@ -23,7 +23,7 @@ doctype html
 -         text: 'Asystenci RAG i workflowy wspierające zespoły w codziennej pracy.'
 -     }
 - ];
-- const services = [
+- var services = [
 -     {
 -         title: 'Agenci AI do pracy z narzędziami',
 -         description: 'Agenci, którzy wykonują zadania wieloetapowe: planowanie, używanie narzędzi, weryfikacje i finalny raport.',
@@ -61,7 +61,7 @@ doctype html
 -         ]
 -     }
 - ];
-- const caseStudies = [
+- var caseStudies = [
 -     {
 -         title: 'Agent ofertowania i wycen',
 -         problem: 'Zespół sprzedaży tracił czas na ręczne kompletowanie danych, wyliczenia i przygotowanie ofert w spójną formę.',
@@ -111,7 +111,7 @@ doctype html
 -         hil: 'opcjonalnie'
 -     }
 - ];
-- const processSteps = [
+- var processSteps = [
 -     {
 -         title: 'Discovery i analiza potrzeb',
 -         text: 'Doprecyzowujemy use case, dane, ryzyka i kryteria sukcesu.'
@@ -133,14 +133,14 @@ doctype html
 -         text: 'Stabilne wdrożenie, dokumentacja i dalsze iteracje.'
 -     }
 - ];
-- const deliverables = [
+- var deliverables = [
 -     'Diagram architektury i przepływów',
 -     'Specyfikacja MVP + backlog',
 -     'Wersja produkcyjna (lub pilot) z monitoringiem',
 -     'Zestaw testów i evals',
 -     'Dokumentacja i instrukcja utrzymania'
 - ];
-- const techGroups = [
+- var techGroups = [
 -     {
 -         title: 'Backend',
 -         tags: ['Python', 'FastAPI', 'REST API', 'async', 'background jobs', 'kolejkowanie', 'integracje']
@@ -158,7 +158,7 @@ doctype html
 -         tags: ['Docker', 'CI/CD', 'testy (unit/integration)', 'logging', 'OpenTelemetry', 'monitoring', 'alerting']
 -     }
 - ];
-- const faqItems = [
+- var faqItems = [
 -     {
 -         question: 'Czy można zobaczyć więcej szczegółów projektów?',
 -         answer: 'Tak. Większość realizacji jest objęta NDA, ale mogę pokazać dodatkowe materiały po podpisaniu NDA lub w formie zanonimizowanych diagramów i przepływów.'
@@ -184,7 +184,7 @@ doctype html
 -         answer: 'API systemów (CRM/ERP/Jira), Slack/Teams, email i kalendarze, bazy danych i źródła dokumentów.'
 -     }
 - ];
-- const ragSteps = [
+- var ragSteps = [
 -     {
 -         title: 'Źródła danych',
 -         tooltip: 'Dokumenty, CRM, bazy danych i intranet.'
@@ -461,11 +461,11 @@ html(lang='pl')
                     h2.mb-4 FAQ
                     #faqAccordion.accordion.reveal(data-reveal='fade-up')
                         each item, index in faqItems
-                            - const headingId = `faq-heading-${index}`;
-                            - const collapseId = `faq-collapse-${index}`;
+                            - var headingId = 'faq-heading-' + index;
+                            - var collapseId = 'faq-collapse-' + index;
                             .accordion-item
                                 h3.accordion-header(id=headingId)
-                                    button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target=`#${collapseId}`, aria-expanded='false', aria-controls=collapseId)= item.question
+                                    button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#' + collapseId, aria-expanded='false', aria-controls=collapseId)= item.question
                                 .accordion-collapse.collapse(id=collapseId, aria-labelledby=headingId, data-bs-parent='#faqAccordion')
                                     .accordion-body= item.answer
 

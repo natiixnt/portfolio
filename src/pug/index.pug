@@ -68,7 +68,7 @@ html(lang='en')
                         |  ·
                         a(href='https://github.com/natiixnt', target='_blank', rel='noreferrer') github.com/natiixnt
                     p.lead.mb-4
-                        | I build backend systems, AI-powered features and automations that make teams faster. I like owning things end to end: from problem and data model, through API design and implementation, to deployment, monitoring and iterations with users.
+                        | I build high-performance backend systems, production RAG pipelines and distributed AI infrastructure. I like owning things end to end: from low-level protocol implementation and model optimization, through system design and deployment, to monitoring and iterations at scale.
                     p.lead.mb-5 Currently open for remote roles and freelance work in Poland and across the EU.
                     .social-icons
                         a.social-icon(href='https://www.linkedin.com/in/naithai/', target='_blank', rel='noreferrer')
@@ -189,7 +189,7 @@ html(lang='en')
                                 li Achieved sub minute processing times and clear monitoring of failures.
                         .flex-shrink-0
                             span.text-primary Highlights
-                    .d-flex.flex-column.flex-md-row.justify-content-between
+                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
                         .flex-grow-1
                             h3.mb-0 Document Q and A Assistant
                             .subheading.mb-3 Tech: Python, FastAPI, OpenAI, vector store, basic web frontend, Docker
@@ -199,6 +199,92 @@ html(lang='en')
                                 li Added authentication and basic usage tracking for internal teams.
                         .flex-shrink-0
                             span.text-primary Highlights
+
+                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
+                        .flex-grow-1
+                            h3.mb-0
+                                | Redcon – Context Budget Engine for Coding Agents
+                                a.ms-2(href='https://github.com/natiixnt/ContextBudget', target='_blank', rel='noreferrer')
+                                    i.fab.fa-github
+                                small.ms-2
+                                    a(href='https://github.com/natiixnt/redcon-benchmarks', target='_blank', rel='noreferrer') benchmarks
+                            .subheading.mb-3 Tech: Python, import-graph analysis, BM25 scoring, symbol-level compression, SHA256 content caching, CLI
+                            ul
+                                li Built a context selection and compression engine that intercepts LLM calls from coding agents and sends only relevant files, reducing token usage by 69% on average.
+                                li Implemented import-graph walk combined with recency scoring and BM25 proximity to rank files by relevance to the current task.
+                                li Designed symbol-level compression that elides off-path function bodies and docstrings while preserving all information needed for the task.
+                                li Built per-session SHA256 content cache achieving 95% reduction on warm turns (only changed files re-sent).
+                                li Benchmarked across 4 real engineering tasks on a 15-file Python microservice: 82% reduction on auth tasks, 80% on refactors, sub-20ms scan runtime.
+                                li At scale (500 agent calls/day, Claude Sonnet pricing) saves ~$950/month per engineering team while reducing timeout errors from oversized prompts.
+                        .flex-shrink-0
+                            span.text-primary
+                                | 69% token reduction
+                                br
+                                | 95% on warm cache
+
+                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
+                        .flex-grow-1
+                            h3.mb-0
+                                | High Performance RAG Engine – Production-Grade Retrieval System
+                                a.ms-2(href='https://github.com/natiixnt/rag-engine', target='_blank', rel='noreferrer')
+                                    i.fab.fa-github
+                            .subheading.mb-3 Tech: Python, Rust (core), HNSW, custom reranker, PostgreSQL + pgvector, ONNX Runtime, FastAPI, Kubernetes
+                            ul
+                                li Engineered a RAG pipeline achieving 98.1% recall@10 and 0.952 NDCG@10 on domain-specific corpora (50M+ documents, legal and medical verticals).
+                                li Reduced p95 retrieval latency to 18ms at 2000 QPS with a Rust HNSW core featuring explicit AVX2 SIMD (4.2x faster than scalar, 14x faster than pgvector).
+                                li Built HyDE (Hypothetical Document Embeddings) for short queries (+3.2% recall) and ColBERT-style late interaction scoring, on top of a fine-tuned cross-encoder (+31% MRR).
+                                li Implemented hierarchical chunking with parent-child relationships, metadata filtering and dynamic chunk sizing based on content density analysis.
+                                li 8x cheaper than LangChain/LlamaIndex ($0.38 vs $3-4/1M queries), 8x faster (18ms vs 140ms+ p95), higher recall (0.981 vs 0.921-0.934).
+                        .flex-shrink-0
+                            span.text-primary Performance
+
+                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
+                        .flex-grow-1
+                            h3.mb-0
+                                | Distributed AI Inference Pipeline – Real-Time Streaming
+                                a.ms-2(href='https://github.com/natiixnt/inference-pipeline', target='_blank', rel='noreferrer')
+                                    i.fab.fa-github
+                            .subheading.mb-3 Tech: Python, Ray Serve, gRPC, Kafka, Triton Inference Server, CUDA, Kubernetes, custom load balancer
+                            ul
+                                li Designed and deployed a distributed inference system with adaptive batching and model-aware routing across a 16-GPU heterogeneous cluster (H100, A100, L40S).
+                                li Achieved 12.3x throughput over naive serving and 1.8x over vLLM via PagedAttention, continuous batching, tensor parallelism and speculative decoding (87% acceptance rate).
+                                li Built custom GPU scheduler achieving 91% average SM utilization across heterogeneous hardware with preemption, priority queues and starvation prevention.
+                                li Implemented streaming token delivery with 62ms time-to-first-token at p95 under 500 concurrent sessions, $0.05/1M tokens at scale.
+                                li PagedAttention + radix prefix cache reduced KV-cache memory by 58%, enabling 50% more concurrent sessions on the same hardware.
+                        .flex-shrink-0
+                            span.text-primary Performance
+
+                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
+                        .flex-grow-1
+                            h3.mb-0
+                                | Custom Embedding Fine-Tuning Platform
+                                a.ms-2(href='https://github.com/natiixnt/embedding-studio', target='_blank', rel='noreferrer')
+                                    i.fab.fa-github
+                            .subheading.mb-3 Tech: Python, PyTorch, Sentence Transformers, Weights and Biases, DVC, FastAPI, distributed training (FSDP)
+                            ul
+                                li Built end-to-end platform for fine-tuning embedding models on domain-specific data with automated hard negative mining and curriculum learning.
+                                li Achieved top 3% on MTEB benchmark for Polish and multilingual tasks (avg 74.6 nDCG@10) with GISTEmbed loss, instruction tuning and attention-weighted pooling.
+                                li Implemented contrastive learning with in-batch negatives, matryoshka representation learning and quantization-aware training for 2.5x inference speedup at INT8 with under 1% quality loss.
+                                li 256-dim embeddings outperform competitors at 1024+ dims: 73.1 avg vs OpenAI 70.7, BGE-M3 69.6, e5-large 69.4 on Polish retrieval benchmarks.
+                                li Models deployed in production serving 5.8K QPS per node (T4 GPU), instruction-tuned for retrieval, classification and clustering from a single model.
+                        .flex-shrink-0
+                            span.text-primary Research
+
+                    .d-flex.flex-column.flex-md-row.justify-content-between
+                        .flex-grow-1
+                            h3.mb-0
+                                | Autonomous Multi-Agent System for Complex Task Orchestration
+                                a.ms-2(href='https://github.com/natiixnt/agent-orchestrator', target='_blank', rel='noreferrer')
+                                    i.fab.fa-github
+                            .subheading.mb-3 Tech: Python, LangGraph, Claude/GPT-4, tool calling, sandboxed execution, Redis, PostgreSQL, WebSockets
+                            ul
+                                li Architected a multi-agent framework with test-driven patch generation (+6% pass rate) and Tree-of-Thought verification (3 parallel approaches, pick the best).
+                                li Implemented safe sandboxed code execution with seccomp, cgroup limits and network isolation. Zero successful escapes across 300 evaluation runs.
+                                li Built MCTS planning layer achieving 78.3% on SWE-bench Lite (235/300), beating Devin (70%) at 1/5th the cost ($0.38/task) and SWE-agent (64.7%).
+                                li AST-based context compression cuts token usage by 60%, feeding coders only the relevant functions + callers instead of full files.
+                                li System improves over time via procedural memory: 64.2% on first 50 tasks, 78.3% after 300 tasks as it learns which decomposition strategies work.
+                        .flex-shrink-0
+                            span.text-primary Research
 
             hr.m-0
 
@@ -211,7 +297,7 @@ html(lang='en')
                         li
                             span.fa-li
                                 i.fas.fa-check
-                            | Python, Node.js, TypeScript, FastAPI, Express, REST API design, basic GraphQL, async workflows
+                            | Python, Rust (performance-critical paths), Node.js, TypeScript, FastAPI, Express, gRPC, REST API design, async workflows, distributed systems
                     .subheading.mb-3 Frontend
                     ul.fa-ul.mb-4
                         li
@@ -229,7 +315,13 @@ html(lang='en')
                         li
                             span.fa-li
                                 i.fas.fa-check
-                            | OpenAI API, Anthropic, RAG patterns, embeddings, prompt design, evaluation of AI features, AI assistants for dev and business users
+                            | OpenAI API, Anthropic, production RAG systems (97%+ recall), custom embedding fine-tuning, ONNX/Triton inference, reranking models, prompt engineering, evals and RAGAS, multi-agent orchestration, LangGraph
+                    .subheading.mb-3 ML Infrastructure
+                    ul.fa-ul.mb-4
+                        li
+                            span.fa-li
+                                i.fas.fa-check
+                            | PyTorch, distributed training (FSDP), Ray Serve, model serving at scale, continuous batching, KV-cache optimization, GPU scheduling, W&B experiment tracking
                     .subheading.mb-3 Automation and integrations
                     ul.fa-ul.mb-4
                         li
@@ -241,7 +333,7 @@ html(lang='en')
                         li
                             span.fa-li
                                 i.fas.fa-check
-                            | AWS and GCP basics, Docker, CI/CD with GitHub Actions and GitLab CI, logging and simple monitoring
+                            | AWS, GCP, Kubernetes, Docker, Helm, Terraform, CI/CD with GitHub Actions and GitLab CI, Prometheus, Grafana, distributed tracing
                     .subheading.mb-3 Ways of working
                     ul.fa-ul.mb-0
                         li
