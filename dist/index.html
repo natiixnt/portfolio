@@ -240,6 +240,7 @@
                                 <li>Reduced p95 retrieval latency to 18ms at 2000 QPS with a Rust HNSW core featuring explicit AVX2 SIMD (4.2x faster than scalar, 14x faster than pgvector).</li>
                                 <li>Built HyDE (Hypothetical Document Embeddings) for short queries (+3.2% recall) and ColBERT-style late interaction scoring, on top of a fine-tuned cross-encoder (+31% MRR).</li>
                                 <li>Implemented hierarchical chunking with parent-child relationships, metadata filtering and dynamic chunk sizing based on content density analysis.</li>
+                                <li>Domain evaluations: LegalBench 0.89 Legal-MRR, BioASQ 0.87 retrieval accuracy. 25-40x faster than ColBERTv2 at SOTA-comparable quality.</li>
                                 <li>8x cheaper than LangChain/LlamaIndex ($0.38 vs $3-4/1M queries), 8x faster (18ms vs 140ms+ p95), higher recall (0.981 vs 0.921-0.934).</li>
                             </ul>
                         </div>
@@ -258,6 +259,8 @@
                                 <li>Built custom GPU scheduler achieving 91% average SM utilization across heterogeneous hardware with preemption, priority queues and starvation prevention.</li>
                                 <li>Implemented streaming token delivery with 62ms time-to-first-token at p95 under 500 concurrent sessions, $0.05/1M tokens at scale.</li>
                                 <li>PagedAttention + radix prefix cache reduced KV-cache memory by 58%, enabling 50% more concurrent sessions on the same hardware.</li>
+                                <li>FP8 quantization on H100/H200 (E4M3 weights, E5M2 activations) gives 1.6x throughput over FP16 with under 0.5% GSM8K quality regression. Mixture of Experts routing for Mixtral and DeepSeek-V2.</li>
+                                <li>Chaos engineering harness: GPU failure recovery in under 2s, 24h soak test with 4,182 injected failures, 96% SLA compliance, 0.043% request loss.</li>
                             </ul>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">Performance</span></div>
@@ -275,6 +278,8 @@
                                 <li>Implemented contrastive learning with in-batch negatives, matryoshka representation learning and quantization-aware training for 2.5x inference speedup at INT8 with under 1% quality loss.</li>
                                 <li>256-dim embeddings outperform competitors at 1024+ dims: 73.1 avg vs OpenAI 70.7, BGE-M3 69.6, e5-large 69.4 on Polish retrieval benchmarks.</li>
                                 <li>Models deployed in production serving 5.8K QPS per node (T4 GPU), instruction-tuned for retrieval, classification and clustering from a single model.</li>
+                                <li>ColBERT-style multi-vector retrieval as opt-in mode (+2.4% nDCG at 8x storage). Domain evals: 0.84 nDCG on Polish legal contracts, 0.91 on legal Q&amp;A.</li>
+                                <li>Beats Jina-v3, BGE-M3.5 and NV-Embed-v2 on 12+ Polish MTEB tasks. Top 3 MTEB-PL leaderboard ranking with full reproduction harness.</li>
                             </ul>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">Research</span></div>
@@ -292,6 +297,8 @@
                                 <li>Built MCTS planning layer achieving 78.3% on SWE-bench Lite (235/300), beating Devin (70%) at 1/5th the cost ($0.38/task) and SWE-agent (64.7%).</li>
                                 <li>AST-based context compression cuts token usage by 60%, feeding coders only the relevant functions + callers instead of full files.</li>
                                 <li>System improves over time via procedural memory: 64.2% on first 50 tasks, 78.3% after 300 tasks as it learns which decomposition strategies work.</li>
+                                <li>Cross-benchmark validation: 51.2% on SWE-bench Verified (rigorous version, beats Claude-Sonnet baseline +2.2%), 92.1% pass@1 on HumanEval+, beats Aider on LiveCodeBench easy/medium.</li>
+                                <li>DSPy-style prompt optimization (BootstrapFewShot, +3.2% pass rate) and self-critique loop catching 23% of bugs that the reviewer agent misses.</li>
                             </ul>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">Research</span></div>
